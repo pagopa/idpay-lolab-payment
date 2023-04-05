@@ -1,0 +1,12 @@
+site_name: IDPay Low Latency Lab - Payment
+site_url: https://pagopa.github.io/idpay-lolab-payment
+site_author: PagoPA
+
+repo_name: pagopa/idpay-lolab-payment
+repo_url: https://github.com/pagopa/idpay-lolab-payment/
+
+theme:
+  name: material
+  font:
+    text: Roboto
+    code: Roboto Mono
