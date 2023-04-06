@@ -5,6 +5,7 @@ import org.apache.ignite.IgniteCheckedException;
 import org.apache.ignite.IgniteSpring;
 import org.apache.ignite.configuration.IgniteConfiguration;
 import org.apache.ignite.internal.processors.cache.persistence.wal.reader.StandaloneNoopCommunicationSpi;
+import org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +26,6 @@ public class IgniteMemberConfiguration {
     return new IgniteConfiguration()
         .setIgniteInstanceName("ignite-cluster")
         .setConsistentId("consistendId")
-        .setCommunicationSpi(new StandaloneNoopCommunicationSpi());
+        .setCommunicationSpi(new TcpCommunicationSpi());
   }
 }
