@@ -15,3 +15,5 @@ in termini di affinità e modalità di replicazione.
       In questo modo la memoria totale utilizzabile è la somma della memoria dei singoli nodi (a meno di backup). Questo consente di aggiungere un nodo e di aumentare la memoria totale disponibile. Preferibile quando si tratta un set di dati molto grande
     * replicated: tutte le partizioni sono presenti in tutti i nodi. In questo modo la memoria totale 
      è data dalla memoria del singolo nodo. Preferibile quando il dataset è relativamente piccolo e ci sono pochi update.
+
+

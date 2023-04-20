@@ -184,3 +184,5 @@ gradle-app.setting
 
 ignite/**
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,java,groovy,gradle,intellij+all
+
+helm/local
