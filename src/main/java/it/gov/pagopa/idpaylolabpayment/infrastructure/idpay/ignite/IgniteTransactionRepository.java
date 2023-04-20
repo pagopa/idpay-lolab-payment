@@ -3,31 +3,36 @@ package it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.ignite;
 import it.gov.pagopa.idpaylolabpayment.domain.Transaction;
 import it.gov.pagopa.idpaylolabpayment.domain.TransactionId;
 import it.gov.pagopa.idpaylolabpayment.domain.TransactionRepository;
-import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.mongo.TransactionEntity;
-import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.mongo.TransactionMapper;
 import org.apache.ignite.IgniteCache;
+import org.apache.ignite.transactions.TransactionException;
 import reactor.core.publisher.Mono;
 
 public class IgniteTransactionRepository implements TransactionRepository {
 
-  private final IgniteCache<String, TransactionEntity> cache;
-  private final TransactionMapper mapper;
+  private final IgniteCache<String, Transaction> cache;
 
-  public IgniteTransactionRepository(IgniteCache<String, TransactionEntity> cache) {
+  public IgniteTransactionRepository(IgniteCache<String, Transaction> cache) {
     this.cache = cache;
-    this.mapper = new TransactionMapper();
   }
 
   @Override
   public Mono<Transaction> findByTransactionId(TransactionId transactionId) {
-    return Mono.fromCallable(() -> cache.getAsync(transactionId.value()).get())
-        .map(mapper::fromEntity);
+    return Mono.fromCallable(
+        () -> cache.get(transactionId.value())
+    );
   }
 
   @Override
   public Mono<Transaction> save(Transaction requestTransaction) {
-    return Mono.just(mapper.toEntity(requestTransaction))
-        .flatMap(transaction -> Mono.fromCallable(() -> cache.putAsync(transaction.transactionId(), transaction).get()))
-        .map(v -> requestTransaction);
+    return Mono.create(monoSink -> {
+      try {
+        cache.put(requestTransaction.getTransactionId().value(), requestTransaction);
+        monoSink.success(requestTransaction);
+      } catch (TransactionException e) {
+        monoSink.error(e);
+      }
+    });
   }
+
 }
+

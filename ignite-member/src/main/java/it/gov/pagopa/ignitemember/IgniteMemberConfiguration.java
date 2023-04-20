@@ -3,10 +3,17 @@ package it.gov.pagopa.ignitemember;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCheckedException;
 import org.apache.ignite.IgniteSpring;
+import org.apache.ignite.binary.BinaryObjectException;
+import org.apache.ignite.binary.BinaryReader;
+import org.apache.ignite.binary.BinarySerializer;
+import org.apache.ignite.binary.BinaryWriter;
+import org.apache.ignite.configuration.BinaryConfiguration;
 import org.apache.ignite.configuration.DataPageEvictionMode;
 import org.apache.ignite.configuration.DataRegionConfiguration;
 import org.apache.ignite.configuration.DataStorageConfiguration;
 import org.apache.ignite.configuration.IgniteConfiguration;
+import org.apache.ignite.internal.binary.BinaryMarshaller;
+import org.apache.ignite.internal.binary.GridBinaryMarshaller;
 import org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +41,7 @@ public class IgniteMemberConfiguration {
     storageConfiguration.setDataRegionConfigurations(
         simpleCacheDataRegion
     );
+
     return new IgniteConfiguration()
         .setIgniteInstanceName("ignite-cluster")
         .setDataStorageConfiguration(storageConfiguration)
@@ -46,7 +54,7 @@ public class IgniteMemberConfiguration {
     final var region = new DataRegionConfiguration();
     region.setName(SIMPLE_CACHE_EVICTION_REGION);
     region.setInitialSize(20L * 1024 * 1024); // 20 MB
-    region.setMaxSize(40L * 1024 * 1024); // Max 40 MB
+    region.setMaxSize(100L * 1024 * 1024); // Max 100 MB
     region.setPageEvictionMode(DataPageEvictionMode.RANDOM_2_LRU);
     region.setMetricsEnabled(true);
     region.setEvictionThreshold(0.8); // 80 %

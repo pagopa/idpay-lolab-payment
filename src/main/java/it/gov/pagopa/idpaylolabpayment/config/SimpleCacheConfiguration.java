@@ -2,6 +2,7 @@ package it.gov.pagopa.idpaylolabpayment.config;
 
 import static it.gov.pagopa.ignitemember.IgniteMemberConfiguration.SIMPLE_CACHE_EVICTION_REGION;
 
+import it.gov.pagopa.idpaylolabpayment.domain.Transaction;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
 import org.apache.ignite.cache.CacheMode;
@@ -25,5 +26,17 @@ public class SimpleCacheConfiguration {
     return ignite.getOrCreateCache(configuration);
   }
 
+  @Bean
+  public IgniteCache<String, Transaction> transactionCache(Ignite ignite) {
+    final var configuration = new CacheConfiguration<String, Transaction>()
+        .setName("transaction-cache")
+        .setCacheMode(CacheMode.PARTITIONED)
+        .setOnheapCacheEnabled(true)
+        .setBackups(1)
+        .setTypes(String.class, Transaction.class)
+        .setDataRegionName(SIMPLE_CACHE_EVICTION_REGION);
+
+    return ignite.getOrCreateCache(configuration);
+  }
 
 }
