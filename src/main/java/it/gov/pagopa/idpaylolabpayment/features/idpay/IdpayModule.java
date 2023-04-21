@@ -5,8 +5,6 @@ import it.gov.pagopa.idpaylolabpayment.domain.TransactionIdGenerator;
 import it.gov.pagopa.idpaylolabpayment.domain.TransactionRepository;
 import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.UuidTransactionIdGenerator;
 import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.ignite.IgniteTransactionRepository;
-import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.mongo.MongoTransactionRepository;
-import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.mongo.TransactionReactiveDao;
 import org.apache.ignite.IgniteCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,11 +13,11 @@ import org.springframework.context.annotation.Configuration;
 public class IdpayModule {
 
   @Bean
-  AddRequestTransaction addRequestTransaction(
+  AddPendingTransaction addRequestTransaction(
       TransactionRepository repository,
       TransactionIdGenerator transactionIdGenerator
   ) {
-    return new AddRequestTransaction(repository, transactionIdGenerator);
+    return new AddPendingTransaction(repository, transactionIdGenerator);
   }
 
   @Bean

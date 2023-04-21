@@ -19,21 +19,21 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class IdpayRestController {
 
-  private final AddRequestTransaction addRequestTransaction;
+  private final AddPendingTransaction addPendingTransaction;
   private final GetRequestTransaction getRequestTransaction;
 
   public IdpayRestController(
-      AddRequestTransaction addRequestTransaction,
+      AddPendingTransaction addPendingTransaction,
       GetRequestTransaction getRequestTransaction
   ) {
-    this.addRequestTransaction = addRequestTransaction;
+    this.addPendingTransaction = addPendingTransaction;
     this.getRequestTransaction = getRequestTransaction;
   }
 
   @PostMapping("/")
   public Mono<ResponseEntity<String>> addTransaction(@RequestBody RequestTransactionDto request) {
     log.info("Request create transaction with {}", request);
-    return addRequestTransaction.handle(request)
+    return addPendingTransaction.handle(request)
         .map(TransactionId::value)
         .map(ResponseEntity::ok)
         .doOnError(error -> log.error("Error during create request", error))

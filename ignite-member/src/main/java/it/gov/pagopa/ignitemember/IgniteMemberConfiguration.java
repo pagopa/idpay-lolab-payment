@@ -6,6 +6,7 @@ import org.apache.ignite.IgniteSpring;
 import org.apache.ignite.configuration.DataPageEvictionMode;
 import org.apache.ignite.configuration.DataRegionConfiguration;
 import org.apache.ignite.configuration.DataStorageConfiguration;
+import org.apache.ignite.configuration.DeploymentMode;
 import org.apache.ignite.configuration.IgniteConfiguration;
 import org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi;
 import org.springframework.context.ApplicationContext;
@@ -39,6 +40,7 @@ public class IgniteMemberConfiguration {
         .setIgniteInstanceName("ignite-cluster")
         .setDataStorageConfiguration(storageConfiguration)
         .setPeerClassLoadingEnabled(true)
+        .setDeploymentMode(DeploymentMode.CONTINUOUS)
         .setCommunicationSpi(new TcpCommunicationSpi());
   }
 

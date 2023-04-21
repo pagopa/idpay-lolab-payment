@@ -6,12 +6,12 @@ import it.gov.pagopa.idpaylolabpayment.domain.Transaction;
 import it.gov.pagopa.idpaylolabpayment.domain.TransactionId;
 import reactor.core.publisher.Mono;
 
-public class AddRequestTransaction {
+public class AddPendingTransaction {
 
   private final TransactionRepository repository;
   private final TransactionIdGenerator idGenerator;
 
-  public AddRequestTransaction(TransactionRepository repository, TransactionIdGenerator idGenerator) {
+  public AddPendingTransaction(TransactionRepository repository, TransactionIdGenerator idGenerator) {
     this.repository = repository;
     this.idGenerator = idGenerator;
   }

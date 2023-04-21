@@ -31,7 +31,7 @@ public class SimpleCacheConfiguration {
     final var configuration = new CacheConfiguration<String, Transaction>()
         .setName("transaction-cache")
         .setCacheMode(CacheMode.PARTITIONED)
-        .setOnheapCacheEnabled(true)
+        .setOnheapCacheEnabled(false)
         .setBackups(1)
         .setTypes(String.class, Transaction.class)
         .setDataRegionName(SIMPLE_CACHE_EVICTION_REGION);
