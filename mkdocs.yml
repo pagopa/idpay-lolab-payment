@@ -5,6 +5,10 @@ site_author: PagoPA
 repo_name: pagopa/idpay-lolab-payment
 repo_url: https://github.com/pagopa/idpay-lolab-payment/
 
+nav:
+  - Home: 'index.md'
+  - 'Local Deploy': 'local.md'
+
 theme:
   name: material
   font:
