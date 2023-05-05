@@ -37,6 +37,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
 
+
 	implementation project(path: ":ignite-member")
 
 	compileOnly 'org.projectlombok:lombok'
@@ -52,6 +53,8 @@ tasks.named('test') {
 // https://ignite.apache.org/docs/latest/quick-start/java#running-ignite-with-java-11-or-later
 tasks.withType(JavaExec).configureEach {
 	jvmArgs = [
+			"-Xms512m",
+			"-Xmx768m",
 			"--add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED",
 			"--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED",
 			"--add-opens=java.base/sun.nio.ch=ALL-UNNAMED",
