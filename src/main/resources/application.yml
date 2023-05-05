@@ -1,3 +1,16 @@
+management:
+  info.defaults.enabled: false
+  endpoints.enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
+      probes:
+        enabled: true
+  defaults:
+    metrics:
+      export:
+        enabled: false
+
 spring:
   config:
     activate:
