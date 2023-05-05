@@ -8,6 +8,7 @@ import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.ignite.IgniteTransac
 import org.apache.ignite.IgniteCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 @Configuration
 public class IdpayModule {
@@ -30,12 +31,15 @@ public class IdpayModule {
     return new UuidTransactionIdGenerator();
   }
 
+  // Enable it to use directly mongodb
 //  @Bean
-//  TransactionRepository repository(TransactionReactiveDao transactionReactiveDao) {
+//  MongoTransactionRepository mongoTransactionRepository(TransactionReactiveDao transactionReactiveDao) {
 //    return new MongoTransactionRepository(transactionReactiveDao);
 //  }
 
+  // Enable it to use ignite cache as repository to save and retrieve data
   @Bean
+  @DependsOn("transactionReactiveDao")
   TransactionRepository repository(IgniteCache<String, Transaction> transactionCache) {
     return new IgniteTransactionRepository(transactionCache);
   }
