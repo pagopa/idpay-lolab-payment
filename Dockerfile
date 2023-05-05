@@ -12,6 +12,8 @@ COPY --from=build /build/build/libs/*.jar /app/app.jar
 EXPOSE 8080
 
 ENTRYPOINT [ "java", \
+  "-Xms512m", \
+  "-Xmx768m", \
 "--add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED", \
   "--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED", \
   "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED", \
@@ -22,7 +24,6 @@ ENTRYPOINT [ "java", \
   "--add-opens=java.base/java.nio=ALL-UNNAMED", \
   "--add-opens=java.base/java.util=ALL-UNNAMED", \
   "--add-opens=java.base/java.lang=ALL-UNNAMED", \
-  "-Xms512m -Xmx512m", \
   "-jar", \
   "/app/app.jar" \
 ]
