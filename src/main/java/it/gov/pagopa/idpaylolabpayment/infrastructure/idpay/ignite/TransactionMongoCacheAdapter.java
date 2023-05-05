@@ -30,7 +30,10 @@ public class TransactionMongoCacheAdapter extends CacheStoreAdapter<String, Tran
       transactionReactiveDao.save(transactionMapper.toEntity(entry.getValue()))
           .subscribeOn(Schedulers.boundedElastic()).toFuture().get();
       log.info("Entry to save for key {}", entry.getKey());
-    } catch (ExecutionException | InterruptedException e) {
+    } catch (ExecutionException e) {
+      throw new CacheWriterException(e);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
       throw new CacheWriterException(e);
     }
   }
@@ -40,7 +43,10 @@ public class TransactionMongoCacheAdapter extends CacheStoreAdapter<String, Tran
     try {
       transactionReactiveDao.deleteById(key.toString())
           .subscribeOn(Schedulers.boundedElastic()).toFuture().get();
-    } catch (InterruptedException | ExecutionException e) {
+    } catch (ExecutionException e) {
+      throw new CacheWriterException(e);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
       throw new CacheWriterException(e);
     }
   }
