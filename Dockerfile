@@ -3,7 +3,7 @@ FROM eclipse-temurin:17-jdk-alpine as build
 WORKDIR /build
 COPY . .
 
-RUN ./gradlew :bootJar
+RUN ./gradlew bootJar
 
 FROM eclipse-temurin:17-jdk-alpine as runtime
 
@@ -12,9 +12,7 @@ COPY --from=build /build/build/libs/*.jar /app/app.jar
 EXPOSE 8080
 
 ENTRYPOINT [ "java", \
-  "-Xms512m", \
-  "-Xmx768m", \
-"--add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED", \
+  "--add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED", \
   "--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED", \
   "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED", \
   "--add-opens=java.management/com.sun.jmx.mbeanserver=ALL-UNNAMED", \

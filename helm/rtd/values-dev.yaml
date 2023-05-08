@@ -18,6 +18,9 @@ microservice-chart:
   envSecret:
     aks-api-url: cstar-d-weu-dev01-aks-apiserver-url
 
+  envConfig:
+    JAVA_TOOL_OPTIONS: "-Xms512m -Xmx768m"
+
   keyvault:
     name: "cstar-d-rtd-kv"
     tenantId: "7788edaf-0346-4068-9d79-c868aed15b3d"

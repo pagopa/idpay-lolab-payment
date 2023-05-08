@@ -1,6 +1,6 @@
 package it.gov.pagopa.idpaylolabpayment.config;
 
-import static it.gov.pagopa.ignitemember.IgniteMemberConfiguration.SIMPLE_CACHE_EVICTION_REGION;
+import static it.gov.pagopa.idpaylolabpayment.config.IgniteMemberConfiguration.SIMPLE_CACHE_EVICTION_REGION;
 
 import it.gov.pagopa.idpaylolabpayment.domain.Transaction;
 import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.ignite.TransactionMongoCacheAdapterFactory;

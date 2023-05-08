@@ -1,4 +1,4 @@
-package it.gov.pagopa.ignitemember;
+package it.gov.pagopa.idpaylolabpayment.config;
 
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCheckedException;
