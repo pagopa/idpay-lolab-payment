@@ -50,7 +50,7 @@ public class IgniteMemberConfiguration {
     final var region = new DataRegionConfiguration();
     region.setName("Default_Region");
     region.setInitialSize(20L * 1024 * 1024); // 20 MB
-    region.setMaxSize(50L * 1024 * 1024); // Max 100 MB
+    region.setMaxSize(50L * 1024 * 1024); // Max 50 MB
     region.setPageEvictionMode(DataPageEvictionMode.RANDOM_2_LRU);
     region.setMetricsEnabled(true);
     region.setEvictionThreshold(0.8); // 80 %
