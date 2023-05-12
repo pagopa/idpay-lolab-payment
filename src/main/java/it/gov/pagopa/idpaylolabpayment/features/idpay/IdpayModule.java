@@ -34,15 +34,15 @@ public class IdpayModule {
   }
 
   // Enable it to use directly mongodb
-  @Bean
-  MongoTransactionRepository repository(TransactionReactiveDao transactionReactiveDao) {
-    return new MongoTransactionRepository(transactionReactiveDao);
-  }
+//  @Bean
+//  MongoTransactionRepository repository(TransactionReactiveDao transactionReactiveDao) {
+//    return new MongoTransactionRepository(transactionReactiveDao);
+//  }
 
   // Enable it to use ignite cache as repository to save and retrieve data
-//  @Bean
-//  @DependsOn("transactionReactiveDao")
-//  TransactionRepository repository(IgniteCache<String, Transaction> transactionCache) {
-//    return new IgniteTransactionRepository(transactionCache);
-//  }
+  @Bean
+  @DependsOn("transactionReactiveDao")
+  TransactionRepository repository(IgniteCache<String, Transaction> transactionCache) {
+    return new IgniteTransactionRepository(transactionCache);
+  }
 }
