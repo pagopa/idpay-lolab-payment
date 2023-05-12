@@ -5,6 +5,8 @@ import it.gov.pagopa.idpaylolabpayment.domain.TransactionIdGenerator;
 import it.gov.pagopa.idpaylolabpayment.domain.TransactionRepository;
 import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.UuidTransactionIdGenerator;
 import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.ignite.IgniteTransactionRepository;
+import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.mongo.MongoTransactionRepository;
+import it.gov.pagopa.idpaylolabpayment.infrastructure.idpay.mongo.TransactionReactiveDao;
 import org.apache.ignite.IgniteCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +35,7 @@ public class IdpayModule {
 
   // Enable it to use directly mongodb
 //  @Bean
-//  MongoTransactionRepository mongoTransactionRepository(TransactionReactiveDao transactionReactiveDao) {
+//  MongoTransactionRepository repository(TransactionReactiveDao transactionReactiveDao) {
 //    return new MongoTransactionRepository(transactionReactiveDao);
 //  }
 
