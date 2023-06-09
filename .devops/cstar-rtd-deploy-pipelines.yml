@@ -72,7 +72,7 @@ variables:
 stages:
   - stage: 'project_version'
     displayName: Release
-    condition: and(eq(variables.canDeploy, true), eq(parameters.executePerformance, false))
+    condition: and(eq(variables.canDeploy, true), eq(${{ parameters.executePerformance }}, false))
     jobs:
       - job: ProjectVersion
         displayName: Gradle project version
@@ -204,7 +204,7 @@ stages:
 
   - stage: 'performance'
     displayName: 'Performance Test'
-    condition: eq(parameters.executePerformance, true)
+    condition: eq(${{ parameters.executePerformance }}, true)
     jobs:
       - job:
         displayName: "Performance Test"
