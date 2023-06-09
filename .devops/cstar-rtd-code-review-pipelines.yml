@@ -48,5 +48,4 @@ jobs:
             grafana/k6:latest \
             run /app/load-test/transaction-load-test.js
         displayName: Run k6 Transaction Load Test
-        condition: eq('${{parameters.SCRIPT }}', 'putTokenMockedPdv')
         timeoutInMinutes: 0
