@@ -30,7 +30,7 @@ parameters:
     type: number
 
 jobs:
-  - steve:
+  - job:
     displayName: "Performance Test"
     pool:
       name: 'dev-cstar-linux'
