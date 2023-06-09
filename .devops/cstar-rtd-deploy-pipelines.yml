@@ -209,7 +209,7 @@ stages:
       - job:
         displayName: "Performance Test"
         pool:
-          name: dev-cstar-linux
+          name: $(selfHostedAgentPool)
         timeoutInMinutes: 0
         steps:
           - script: |
