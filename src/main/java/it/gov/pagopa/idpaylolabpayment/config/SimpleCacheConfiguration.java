@@ -35,7 +35,6 @@ public class SimpleCacheConfiguration {
         .setName("transaction-cache")
         .setCacheMode(CacheMode.PARTITIONED)
         .setOnheapCacheEnabled(false)
-        .setBackups(1)
         .setReadThrough(true)
         .setWriteThrough(true)
         //.setWriteBehindEnabled(true)
