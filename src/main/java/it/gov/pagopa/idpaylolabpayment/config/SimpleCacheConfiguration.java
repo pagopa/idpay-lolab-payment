@@ -37,9 +37,9 @@ public class SimpleCacheConfiguration {
         .setOnheapCacheEnabled(false)
         .setReadThrough(true)
         .setWriteThrough(true)
-        //.setWriteBehindEnabled(true)
-        //.setWriteBehindFlushFrequency(5000) // every 5 seconds flush data
-        //.setWriteBehindFlushSize(1000) // evert 1000 update
+        .setWriteBehindEnabled(true)
+        .setWriteBehindFlushFrequency(3000) // every 5 seconds flush data
+        .setWriteBehindFlushSize(1000) // evert 1000 update
         .setTypes(String.class, Transaction.class)
         .setCacheStoreFactory(new TransactionMongoCacheAdapterFactory().setDataSourceBean("transactionReactiveDao"))
         .setDataRegionName(SIMPLE_CACHE_EVICTION_REGION);
