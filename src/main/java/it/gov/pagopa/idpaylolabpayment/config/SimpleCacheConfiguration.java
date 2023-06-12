@@ -10,6 +10,7 @@ import org.apache.ignite.cache.CacheMode;
 import org.apache.ignite.configuration.CacheConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 @Configuration
 public class SimpleCacheConfiguration {
@@ -28,7 +29,7 @@ public class SimpleCacheConfiguration {
   }
 
   @Bean
-  //@DependsOn("transactionReactiveDao")
+  @DependsOn("transactionReactiveDao")
   public IgniteCache<String, Transaction> transactionCache(Ignite ignite) {
     final var configuration = new CacheConfiguration<String, Transaction>()
         .setName("transaction-cache")

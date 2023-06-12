@@ -33,7 +33,7 @@ jobs:
   - job:
     displayName: "Performance Test"
     pool:
-      name: dev-cstar-linux
+      name: cstar-dev-linux
     timeoutInMinutes: 0
     steps:
       - script: |
