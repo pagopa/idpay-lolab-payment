@@ -30,10 +30,19 @@ const generator = {
 
 export default () => {
     const amount = generator.next(1);
+    const response = transactionApi.createTransaction(amount, "merchant1")
     check(
-        transactionApi.createTransaction(amount, "merchant1"),
+        response,
         {
             'Is OK': (r) => r.status === 200 || r.status === 201,
         }
     );
+
+    const transactionId = response.body
+    check(
+      transactionApi.get(transactionId),
+      {
+        'Is ok': (r) => r.status == 200
+      }
+    )
 };
